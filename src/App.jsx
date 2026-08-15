@@ -1,0 +1,431 @@
+// src/App.jsx
+
+import { useState } from "react";
+
+const projects = [
+  {
+    category: "Valuation",
+    title: "Microsoft — DCF Valuation",
+    description:
+      "A driver-based DCF built around Microsoft's segment economics, operating assumptions, and long-term cash-flow generation.",
+    tags: ["DCF", "Financial Modeling", "Valuation"],
+    status: "Research",
+    link: "#",
+  },
+  {
+    category: "Valuation",
+    title: "Copart — DCF Valuation",
+    description:
+      "A bottom-up valuation model linking vehicle volumes, total-loss frequency, service revenue, and long-term operating assumptions.",
+    tags: ["DCF", "Operating Model", "Equity Research"],
+    status: "Research",
+    link: "#",
+  },
+  {
+    category: "Valuation",
+    title: "K-Unity SACCO — Valuation",
+    description:
+      "Three-statement financial model and DCF valuation developed using published financial statements and comparable-company analysis.",
+    tags: ["3-Statement", "DCF", "Financial Analysis"],
+    status: "Attachment",
+    link: "#",
+  },
+  {
+    category: "Financial Systems",
+    title: "K-Unity Loan Pipeline MIS",
+    description:
+      "An Excel-based management information system with pipeline registers, RM scorecards, SLA aging analysis, dashboards, PivotTables and VBA automation.",
+    tags: ["Excel", "VBA", "MIS"],
+    status: "Built",
+    link: "#",
+  },
+  {
+    category: "Automation",
+    title: "M-Pesa Statement Reconciliation",
+    description:
+      "A web application built to extract M-Pesa statement transactions and automate monthly inflow and outflow reconciliation.",
+    tags: ["React", "JavaScript", "Automation"],
+    status: "Live",
+    link: "https://nexa-mpesa-analyzer.vercel.app/",
+  },
+  {
+    category: "Product",
+    title: "K-Unity Member App",
+    description:
+      "A Progressive Web App prototype covering product information, digital onboarding, annual reports and member feedback.",
+    tags: ["React", "PWA", "FinTech"],
+    status: "Prototype",
+    link: "https://k-unity.vercel.app/",
+  },
+];
+
+function App() {
+  const [filter, setFilter] = useState("All");
+
+  const categories = [
+    "All",
+    "Valuation",
+    "Financial Systems",
+    "Automation",
+    "Product",
+  ];
+
+  const filteredProjects =
+    filter === "All"
+      ? projects
+      : projects.filter((project) => project.category === filter);
+
+  return (
+    <div className="min-h-screen bg-[#050505] text-white selection:bg-white selection:text-black">
+      {/* NAVIGATION */}
+      <nav className="fixed top-0 z-50 w-full border-b border-white/[0.08] bg-[#050505]/80 backdrop-blur-xl">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+          <a href="#" className="text-sm font-medium tracking-tight">
+            Ernest Ngugi
+          </a>
+
+          <div className="hidden items-center gap-8 text-sm text-neutral-400 md:flex">
+            <a href="#work" className="transition hover:text-white">
+              Work
+            </a>
+            <a href="#about" className="transition hover:text-white">
+              About
+            </a>
+            <a href="#contact" className="transition hover:text-white">
+              Contact
+            </a>
+          </div>
+
+          <a
+            href="#contact"
+            className="rounded-full border border-white/10 px-4 py-2 text-xs text-neutral-300 transition hover:border-white/30 hover:text-white"
+          >
+            Get in touch
+          </a>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <main>
+        <section className="relative overflow-hidden pt-40 pb-28">
+          {/* subtle grid */}
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:64px_64px]" />
+
+          {/* glow */}
+          <div className="pointer-events-none absolute left-1/2 top-20 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-white/[0.025] blur-3xl" />
+
+          <div className="relative mx-auto max-w-6xl px-6">
+            <div className="grid items-center gap-16 md:grid-cols-[1fr_300px]">
+              <div>
+                <div className="mb-6 flex items-center gap-3 text-sm text-neutral-500">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                  Finance & Investment Analysis
+                </div>
+
+                <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.04em] sm:text-6xl md:text-7xl">
+                  Ernest Ngugi
+                  <span className="block text-neutral-500">
+                    Financial modeling. Valuation. Analysis.
+                  </span>
+                </h1>
+
+                <p className="mt-8 max-w-2xl text-lg leading-8 text-neutral-400">
+                  I build financial models, valuation frameworks, and
+                  technology-enabled analytical tools to understand businesses
+                  beyond the headline numbers.
+                </p>
+
+                <div className="mt-10 flex flex-wrap gap-3">
+                  <a
+                    href="#work"
+                    className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-neutral-200"
+                  >
+                    View my work
+                  </a>
+
+                  <a
+                    href="#about"
+                    className="rounded-full border border-white/10 px-6 py-3 text-sm font-medium text-white transition hover:border-white/25"
+                  >
+                    About me
+                  </a>
+                </div>
+              </div>
+
+              {/* IMAGE */}
+             <div className="group relative aspect-square overflow-hidden rounded-2xl border border-white/10 bg-[#050505]">
+  <img
+    src="/Ernest_pfp.jpg"
+    alt="Ernest Ngugi"
+    className="h-full w-full object-contain opacity-75 transition-opacity duration-300 group-hover:opacity-90"
+  />
+
+  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/20" />
+</div>
+            </div>
+          </div>
+        </section>
+
+        {/* STATS */}
+        <section className="border-y border-white/[0.08]">
+          <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-white/[0.08] md:grid-cols-4">
+            {[
+              ["8+", "Valuation models"],
+              ["3", "Financial systems"],
+              ["2", "Live applications"],
+              ["2026", "Finance & Banking"],
+            ].map(([number, label]) => (
+              <div key={label} className="px-6 py-8">
+                <div className="text-2xl font-semibold tracking-tight">
+                  {number}
+                </div>
+                <div className="mt-1 text-xs text-neutral-500">{label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* WORK */}
+        <section id="work" className="mx-auto max-w-6xl px-6 py-28">
+          <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <p className="mb-3 text-xs uppercase tracking-[0.2em] text-neutral-600">
+                Selected work
+              </p>
+
+              <h2 className="text-3xl font-semibold tracking-[-0.03em] md:text-4xl">
+                Models & projects
+              </h2>
+
+              <p className="mt-4 max-w-xl text-sm leading-6 text-neutral-500">
+                A collection of financial models, valuation work, analytical
+                systems, and finance-related software I have built.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setFilter(category)}
+                  className={`rounded-full border px-3 py-1.5 text-xs transition ${
+                    filter === category
+                      ? "border-white bg-white text-black"
+                      : "border-white/10 text-neutral-500 hover:border-white/20 hover:text-white"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.08] md:grid-cols-2">
+            {filteredProjects.map((project, index) => (
+              <a
+                href={project.link}
+                target={project.link !== "#" ? "_blank" : undefined}
+                rel={project.link !== "#" ? "noreferrer" : undefined}
+                key={project.title}
+                className="group bg-[#080808] p-7 transition hover:bg-[#0d0d0d]"
+              >
+                <div className="mb-10 flex items-center justify-between">
+                  <span className="text-xs text-neutral-600">
+                    0{index + 1}
+                  </span>
+
+                  <span className="rounded-full border border-white/[0.08] px-2.5 py-1 text-[10px] text-neutral-500">
+                    {project.status}
+                  </span>
+                </div>
+
+                <p className="mb-2 text-xs text-neutral-600">
+                  {project.category}
+                </p>
+
+                <h3 className="text-xl font-medium tracking-tight">
+                  {project.title}
+                </h3>
+
+                <p className="mt-4 min-h-[72px] text-sm leading-6 text-neutral-500">
+                  {project.description}
+                </p>
+
+                <div className="mt-7 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-md bg-white/[0.04] px-2 py-1 text-[10px] text-neutral-500"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-8 flex items-center gap-2 text-xs text-neutral-500 transition group-hover:text-white">
+                  View project
+                  <span className="transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        {/* ABOUT */}
+        <section
+          id="about"
+          className="border-y border-white/[0.08] bg-[#080808]"
+        >
+          <div className="mx-auto grid max-w-6xl gap-12 px-6 py-28 md:grid-cols-[1fr_1.5fr]">
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-neutral-600">
+                About
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em]">
+                Finance, but beyond the spreadsheet.
+              </h2>
+            </div>
+
+            <div className="space-y-6 text-sm leading-7 text-neutral-400">
+              <p>
+                I am a Finance and Banking student at Moi University with a
+                strong interest in investment analysis, financial modeling,
+                valuation, and asset management.
+              </p>
+
+              <p>
+                My work focuses on understanding what actually drives a
+                business: its operating model, financial statements, capital
+                requirements, competitive position, and the assumptions that
+                ultimately determine its value.
+              </p>
+
+              <p>
+                Alongside financial modeling, I use Excel, VBA, Python and
+                JavaScript to automate repetitive processes and turn financial
+                analysis into usable tools.
+              </p>
+
+              <p className="text-neutral-300">
+                I am particularly interested in opportunities where rigorous
+                financial analysis can contribute to better investment and
+                business decisions.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* SKILLS */}
+        <section className="mx-auto max-w-6xl px-6 py-28">
+          <div className="grid gap-12 md:grid-cols-3">
+            {[
+              {
+                title: "Financial Analysis",
+                items: [
+                  "DCF Valuation",
+                  "Three-Statement Modeling",
+                  "Comparable Companies",
+                  "Investment Analysis",
+                  "Financial Forecasting",
+                ],
+              },
+              {
+                title: "Tools",
+                items: [
+                  "Microsoft Excel",
+                  "VBA",
+                  "Python",
+                  "React",
+                  "JavaScript",
+                ],
+              },
+              {
+                title: "Focus",
+                items: [
+                  "Equity Research",
+                  "Investment Analysis",
+                  "Asset Management",
+                  "Financial Modeling",
+                  "Technology-enabled Finance",
+                ],
+              },
+            ].map((group) => (
+              <div key={group.title}>
+                <h3 className="mb-5 text-sm font-medium">{group.title}</h3>
+
+                <div className="space-y-3">
+                  {group.items.map((item) => (
+                    <div
+                      key={item}
+                      className="border-b border-white/[0.06] pb-3 text-sm text-neutral-500"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CONTACT */}
+        <section
+          id="contact"
+          className="border-t border-white/[0.08] bg-[#080808]"
+        >
+          <div className="mx-auto max-w-6xl px-6 py-28">
+            <p className="text-xs uppercase tracking-[0.2em] text-neutral-600">
+              Contact
+            </p>
+
+            <h2 className="mt-4 max-w-2xl text-4xl font-semibold tracking-[-0.04em] md:text-5xl">
+              Interested in the work?
+            </h2>
+
+            <p className="mt-6 max-w-xl text-sm leading-7 text-neutral-500">
+              I am open to conversations around investment analysis, financial
+              modeling, research, and finance opportunities.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-neutral-200"
+              >
+                LinkedIn
+              </a>
+
+              <a
+                href="mailto:your@email.com"
+                className="rounded-full border border-white/10 px-5 py-2.5 text-sm text-white transition hover:border-white/25"
+              >
+                Email
+              </a>
+
+              <a
+                href="#"
+                className="rounded-full border border-white/10 px-5 py-2.5 text-sm text-white transition hover:border-white/25"
+              >
+                Download CV
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* FOOTER */}
+      <footer className="border-t border-white/[0.08]">
+        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-3 px-6 py-8 text-xs text-neutral-600 sm:flex-row">
+          <span>© 2026 Ernest Ngugi Karanu</span>
+          <span>Finance & Investment Analysis</span>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default App;
