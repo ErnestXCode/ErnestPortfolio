@@ -2,32 +2,32 @@ import { useState } from "react";
 
 const projects = [
   {
-    category: "Valuation",
-    title: "Microsoft — DCF Valuation",
-    description:
-      "A driver-based DCF built around Microsoft's segment economics, operating assumptions, and long-term cash-flow generation.",
-    tags: ["DCF", "Financial Modeling", "Valuation"],
-    status: "Research",
-    link: "#",
-  },
-  {
-    category: "Valuation",
-    title: "Copart — DCF Valuation",
-    description:
-      "A bottom-up valuation model linking vehicle volumes, total-loss frequency, service revenue, and long-term operating assumptions.",
-    tags: ["DCF", "Operating Model", "Equity Research"],
-    status: "Research",
-    link: "#",
-  },
-  {
-    category: "Financial Systems",
-    title: "K-Unity Loan Pipeline MIS",
-    description:
-      "An Excel-based management information system with pipeline registers, RM scorecards, SLA aging analysis, dashboards, PivotTables and VBA automation.",
-    tags: ["Excel", "VBA", "MIS"],
-    status: "Built",
-    link: "#",
-  },
+  category: "Valuation",
+  title: "Microsoft — DCF Valuation",
+  description:
+    "A driver-based DCF built around Microsoft's segment economics, operating assumptions, and long-term cash-flow generation.",
+  tags: ["DCF", "Financial Modeling", "Valuation"],
+  status: "Research",
+  link: "/MSFT_DCF.xlsx",
+},
+{
+  category: "Valuation",
+  title: "Copart — DCF Valuation",
+  description:
+    "A bottom-up valuation model linking vehicle volumes, total-loss frequency, service revenue, and long-term operating assumptions.",
+  tags: ["DCF", "Operating Model", "Equity Research"],
+  status: "Research",
+  link: "/COPART_DCF.xlsx",
+},
+{
+  category: "Financial Systems",
+  title: "K-Unity Loan Pipeline MIS",
+  description:
+    "An Excel-based management information system with pipeline registers, RM scorecards, SLA aging analysis, dashboards, PivotTables and VBA automation.",
+  tags: ["Excel", "VBA", "MIS"],
+  status: "Built",
+  link: "/K-Unity-MIS.xlsm",
+},
   {
     category: "Automation",
     title: "M-Pesa Statement Reconciliation",
