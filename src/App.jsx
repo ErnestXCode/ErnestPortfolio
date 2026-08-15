@@ -1,5 +1,3 @@
-// src/App.jsx
-
 import { useState } from "react";
 
 const projects = [
@@ -22,15 +20,6 @@ const projects = [
     link: "#",
   },
   {
-    category: "Valuation",
-    title: "K-Unity SACCO — Valuation",
-    description:
-      "Three-statement financial model and DCF valuation developed using published financial statements and comparable-company analysis.",
-    tags: ["3-Statement", "DCF", "Financial Analysis"],
-    status: "Attachment",
-    link: "#",
-  },
-  {
     category: "Financial Systems",
     title: "K-Unity Loan Pipeline MIS",
     description:
@@ -49,7 +38,16 @@ const projects = [
     link: "https://nexa-mpesa-analyzer.vercel.app/",
   },
   {
-    category: "Product",
+    category: "FinTech",
+    title: "Swaff Holdings",
+    description:
+      "A website I am building for a recovery officer developing Swaff Holdings as a new business venture.",
+    tags: ["React", "Web Development", "FinTech"],
+    status: "In Development",
+    link: "https://swaff-holdings.vercel.app/",
+  },
+  {
+    category: "FinTech",
     title: "K-Unity Member App",
     description:
       "A Progressive Web App prototype covering product information, digital onboarding, annual reports and member feedback.",
@@ -67,7 +65,7 @@ function App() {
     "Valuation",
     "Financial Systems",
     "Automation",
-    "Product",
+    "FinTech",
   ];
 
   const filteredProjects =
@@ -97,21 +95,19 @@ function App() {
           </div>
 
           <a
-            href="#contact"
+            href="mailto:enkaranu58@gmail.com"
             className="rounded-full border border-white/10 px-4 py-2 text-xs text-neutral-300 transition hover:border-white/30 hover:text-white"
           >
-            Get in touch
+            Contact
           </a>
         </div>
       </nav>
 
-      {/* HERO */}
       <main>
+        {/* HERO */}
         <section className="relative overflow-hidden pt-40 pb-28">
-          {/* subtle grid */}
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
-          {/* glow */}
           <div className="pointer-events-none absolute left-1/2 top-20 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-white/[0.025] blur-3xl" />
 
           <div className="relative mx-auto max-w-6xl px-6">
@@ -152,16 +148,22 @@ function App() {
                 </div>
               </div>
 
-              {/* IMAGE */}
-             <div className="group relative aspect-square overflow-hidden rounded-2xl border border-white/10 bg-[#050505]">
-  <img
-    src="/Ernest_pfp.jpg"
-    alt="Ernest Ngugi"
-    className="h-full w-full object-contain opacity-75 transition-opacity duration-300 group-hover:opacity-90"
-  />
+              {/* PROFILE IMAGE */}
+              <div className="mx-auto w-full max-w-[280px]">
+                <div className="group relative aspect-square overflow-hidden rounded-2xl border border-white/10 bg-[#050505]">
+                  <img
+                    src="/Ernest_pfp.jpg"
+                    alt="Ernest Ngugi"
+                    className="h-full w-full object-contain opacity-75 transition-opacity duration-300 group-hover:opacity-90"
+                  />
 
-  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/20" />
-</div>
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/20" />
+                </div>
+
+                <p className="mt-4 text-center text-xs text-neutral-600">
+                  Nairobi, Kenya
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -172,14 +174,17 @@ function App() {
             {[
               ["8+", "Valuation models"],
               ["3", "Financial systems"],
-              ["2", "Live applications"],
+              ["3", "Live / prototype apps"],
               ["2026", "Finance & Banking"],
             ].map(([number, label]) => (
               <div key={label} className="px-6 py-8">
                 <div className="text-2xl font-semibold tracking-tight">
                   {number}
                 </div>
-                <div className="mt-1 text-xs text-neutral-500">{label}</div>
+
+                <div className="mt-1 text-xs text-neutral-500">
+                  {label}
+                </div>
               </div>
             ))}
           </div>
@@ -198,8 +203,8 @@ function App() {
               </h2>
 
               <p className="mt-4 max-w-xl text-sm leading-6 text-neutral-500">
-                A collection of financial models, valuation work, analytical
-                systems, and finance-related software I have built.
+                Financial models, valuation work, analytical systems and
+                finance-related software I have built.
               </p>
             </div>
 
@@ -231,7 +236,7 @@ function App() {
               >
                 <div className="mb-10 flex items-center justify-between">
                   <span className="text-xs text-neutral-600">
-                    0{index + 1}
+                    {String(index + 1).padStart(2, "0")}
                   </span>
 
                   <span className="rounded-full border border-white/[0.08] px-2.5 py-1 text-[10px] text-neutral-500">
@@ -263,10 +268,13 @@ function App() {
                 </div>
 
                 <div className="mt-8 flex items-center gap-2 text-xs text-neutral-500 transition group-hover:text-white">
-                  View project
-                  <span className="transition-transform group-hover:translate-x-1">
-                    →
-                  </span>
+                  {project.link === "#" ? "Coming soon" : "View project"}
+
+                  {project.link !== "#" && (
+                    <span className="transition-transform group-hover:translate-x-1">
+                      →
+                    </span>
+                  )}
                 </div>
               </a>
             ))}
@@ -283,6 +291,7 @@ function App() {
               <p className="text-xs uppercase tracking-[0.2em] text-neutral-600">
                 About
               </p>
+
               <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em]">
                 Finance, but beyond the spreadsheet.
               </h2>
@@ -296,8 +305,8 @@ function App() {
               </p>
 
               <p>
-                My work focuses on understanding what actually drives a
-                business: its operating model, financial statements, capital
+                I build models to understand what actually drives a business:
+                its operating model, financial statements, capital
                 requirements, competitive position, and the assumptions that
                 ultimately determine its value.
               </p>
@@ -353,7 +362,9 @@ function App() {
               },
             ].map((group) => (
               <div key={group.title}>
-                <h3 className="mb-5 text-sm font-medium">{group.title}</h3>
+                <h3 className="mb-5 text-sm font-medium">
+                  {group.title}
+                </h3>
 
                 <div className="space-y-3">
                   {group.items.map((item) => (
@@ -391,26 +402,26 @@ function App() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <a
+                href="mailto:enkaranu58@gmail.com"
+                className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-neutral-200"
+              >
+                Email me
+              </a>
+
+              <a
+                href="tel:+254795482452"
+                className="rounded-full border border-white/10 px-5 py-2.5 text-sm text-white transition hover:border-white/25"
+              >
+                +254 795 482 452
+              </a>
+
+              <a
                 href="https://www.linkedin.com/"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-neutral-200"
+                className="rounded-full border border-white/10 px-5 py-2.5 text-sm text-white transition hover:border-white/25"
               >
                 LinkedIn
-              </a>
-
-              <a
-                href="mailto:your@email.com"
-                className="rounded-full border border-white/10 px-5 py-2.5 text-sm text-white transition hover:border-white/25"
-              >
-                Email
-              </a>
-
-              <a
-                href="#"
-                className="rounded-full border border-white/10 px-5 py-2.5 text-sm text-white transition hover:border-white/25"
-              >
-                Download CV
               </a>
             </div>
           </div>
