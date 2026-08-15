@@ -2,32 +2,35 @@ import { useState } from "react";
 
 const projects = [
   {
-  category: "Valuation",
-  title: "Microsoft — DCF Valuation",
-  description:
-    "A driver-based DCF built around Microsoft's segment economics, operating assumptions, and long-term cash-flow generation.",
-  tags: ["DCF", "Financial Modeling", "Valuation"],
-  status: "Research",
-  link: "/MSFT_DCF.xlsx",
-},
-{
-  category: "Valuation",
-  title: "Copart — DCF Valuation",
-  description:
-    "A bottom-up valuation model linking vehicle volumes, total-loss frequency, service revenue, and long-term operating assumptions.",
-  tags: ["DCF", "Operating Model", "Equity Research"],
-  status: "Research",
-  link: "/COPART_DCF.xlsx",
-},
-{
-  category: "Financial Systems",
-  title: "K-Unity Loan Pipeline MIS",
-  description:
-    "An Excel-based management information system with pipeline registers, RM scorecards, SLA aging analysis, dashboards, PivotTables and VBA automation.",
-  tags: ["Excel", "VBA", "MIS"],
-  status: "Built",
-  link: "/K-Unity-MIS.xlsm",
-},
+    category: "Valuation",
+    title: "Microsoft — DCF Valuation",
+    description:
+      "A driver-based DCF built around Microsoft's segment economics, operating assumptions, and long-term cash-flow generation.",
+    tags: ["DCF", "Financial Modeling", "Valuation"],
+    status: "Research",
+    link: "/MSFT_DCF.xlsx",
+    type: "download",
+  },
+  {
+    category: "Valuation",
+    title: "Copart — DCF Valuation",
+    description:
+      "A bottom-up valuation model linking vehicle volumes, total-loss frequency, service revenue, and long-term operating assumptions.",
+    tags: ["DCF", "Operating Model", "Equity Research"],
+    status: "Research",
+    link: "/COPART_DCF.xlsx",
+    type: "download",
+  },
+  {
+    category: "Financial Systems",
+    title: "K-Unity Loan Pipeline MIS",
+    description:
+      "An Excel-based management information system with pipeline registers, RM scorecards, SLA aging analysis, dashboards, PivotTables and VBA automation.",
+    tags: ["Excel", "VBA", "MIS"],
+    status: "Built",
+    link: "/K-Unity-MIS.xlsm",
+    type: "download",
+  },
   {
     category: "Automation",
     title: "M-Pesa Statement Reconciliation",
@@ -36,6 +39,7 @@ const projects = [
     tags: ["React", "JavaScript", "Automation"],
     status: "Live",
     link: "https://nexa-mpesa-analyzer.vercel.app/",
+    type: "website",
   },
   {
     category: "FinTech",
@@ -45,6 +49,7 @@ const projects = [
     tags: ["React", "Web Development", "FinTech"],
     status: "In Development",
     link: "https://swaff-holdings.vercel.app/",
+    type: "website",
   },
   {
     category: "FinTech",
@@ -54,6 +59,7 @@ const projects = [
     tags: ["React", "PWA", "FinTech"],
     status: "Prototype",
     link: "https://k-unity.vercel.app/",
+    type: "website",
   },
 ];
 
@@ -226,58 +232,70 @@ function App() {
           </div>
 
           <div className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.08] md:grid-cols-2">
-            {filteredProjects.map((project, index) => (
-              <a
-                href={project.link}
-                target={project.link !== "#" ? "_blank" : undefined}
-                rel={project.link !== "#" ? "noreferrer" : undefined}
-                key={project.title}
-                className="group bg-[#080808] p-7 transition hover:bg-[#0d0d0d]"
-              >
-                <div className="mb-10 flex items-center justify-between">
-                  <span className="text-xs text-neutral-600">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+          {filteredProjects.map((project, index) => (
+  <div
+    key={project.title}
+    className="group bg-[#080808] p-7 transition hover:bg-[#0d0d0d]"
+  >
+    <div className="mb-10 flex items-center justify-between">
+      <span className="text-xs text-neutral-600">
+        {String(index + 1).padStart(2, "0")}
+      </span>
 
-                  <span className="rounded-full border border-white/[0.08] px-2.5 py-1 text-[10px] text-neutral-500">
-                    {project.status}
-                  </span>
-                </div>
+      <span className="rounded-full border border-white/[0.08] px-2.5 py-1 text-[10px] text-neutral-500">
+        {project.status}
+      </span>
+    </div>
 
-                <p className="mb-2 text-xs text-neutral-600">
-                  {project.category}
-                </p>
+    <p className="mb-2 text-xs text-neutral-600">
+      {project.category}
+    </p>
 
-                <h3 className="text-xl font-medium tracking-tight">
-                  {project.title}
-                </h3>
+    <h3 className="text-xl font-medium tracking-tight">
+      {project.title}
+    </h3>
 
-                <p className="mt-4 min-h-[72px] text-sm leading-6 text-neutral-500">
-                  {project.description}
-                </p>
+    <p className="mt-4 min-h-[72px] text-sm leading-6 text-neutral-500">
+      {project.description}
+    </p>
 
-                <div className="mt-7 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-md bg-white/[0.04] px-2 py-1 text-[10px] text-neutral-500"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+    <div className="mt-7 flex flex-wrap gap-2">
+      {project.tags.map((tag) => (
+        <span
+          key={tag}
+          className="rounded-md bg-white/[0.04] px-2 py-1 text-[10px] text-neutral-500"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
 
-                <div className="mt-8 flex items-center gap-2 text-xs text-neutral-500 transition group-hover:text-white">
-                  {project.link === "#" ? "Coming soon" : "View project"}
-
-                  {project.link !== "#" && (
-                    <span className="transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  )}
-                </div>
-              </a>
-            ))}
+    <div className="mt-8">
+      {project.type === "download" ? (
+        <a
+          href={project.link}
+          download
+          className="inline-flex items-center gap-2 text-xs text-neutral-500 transition hover:text-white"
+        >
+          Download model
+          <span>↓</span>
+        </a>
+      ) : (
+        <a
+          href={project.link}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 text-xs text-neutral-500 transition hover:text-white"
+        >
+          View project
+          <span className="transition-transform group-hover:translate-x-1">
+            →
+          </span>
+        </a>
+      )}
+    </div>
+  </div>
+))}
           </div>
         </section>
 
