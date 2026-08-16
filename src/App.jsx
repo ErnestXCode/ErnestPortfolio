@@ -112,12 +112,7 @@ function App() {
               Resume
             </a>
 
-            {/* <a
-              href="mailto:enkaranu58@gmail.com"
-              className="rounded-full border border-white/10 px-4 py-2 text-xs text-neutral-300 transition hover:border-white/30 hover:text-white"
-            >
-              Contact
-            </a> */}
+        
           </div>
         </div>
       </nav>
