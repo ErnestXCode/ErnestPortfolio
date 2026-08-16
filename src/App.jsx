@@ -25,7 +25,7 @@ const projects = [
     category: "Financial Systems",
     title: "K-Unity Loan Pipeline MIS",
     description:
-      "An Excel-based management information system with pipeline registers, RM scorecards, SLA aging analysis, dashboards, PivotTables and VBA automation.",
+      "An Excel-based management information system with pipeline registers, RM scorecards, SLA aging analysis, dashboards, PivotTables and VBA automation. Shown with dummy data",
     tags: ["Excel", "VBA", "MIS"],
     status: "Built",
     link: "/K-Unity-MIS.xlsm",
