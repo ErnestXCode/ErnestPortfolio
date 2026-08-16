@@ -92,20 +92,33 @@ function App() {
             <a href="#work" className="transition hover:text-white">
               Work
             </a>
+
             <a href="#about" className="transition hover:text-white">
               About
             </a>
+
             <a href="#contact" className="transition hover:text-white">
               Contact
             </a>
           </div>
 
-          <a
-            href="mailto:enkaranu58@gmail.com"
-            className="rounded-full border border-white/10 px-4 py-2 text-xs text-neutral-300 transition hover:border-white/30 hover:text-white"
-          >
-            Contact
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href="/Ernest%20Ngugi%20Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden rounded-full border border-white/10 px-4 py-2 text-xs text-neutral-300 transition hover:border-white/30 hover:text-white sm:block"
+            >
+              Resume
+            </a>
+
+            <a
+              href="mailto:enkaranu58@gmail.com"
+              className="rounded-full border border-white/10 px-4 py-2 text-xs text-neutral-300 transition hover:border-white/30 hover:text-white"
+            >
+              Contact
+            </a>
+          </div>
         </div>
       </nav>
 
@@ -151,6 +164,15 @@ function App() {
                   >
                     About me
                   </a>
+
+                  <a
+                    href="/Ernest%20Ngugi%20Resume.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-full border border-white/10 px-6 py-3 text-sm font-medium text-neutral-300 transition hover:border-white/25 hover:text-white"
+                  >
+                    Resume
+                  </a>
                 </div>
               </div>
 
@@ -179,8 +201,8 @@ function App() {
           <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-white/[0.08] md:grid-cols-4">
             {[
               ["2", "Valuation models"],
-              ["1", "Financial systems"],
-              ["3", "Live / prototype apps"],
+              ["1", "Financial system"],
+              ["3", "Apps & web projects"],
               ["2026", "Finance & Banking"],
             ].map(([number, label]) => (
               <div key={label} className="px-6 py-8">
@@ -232,70 +254,70 @@ function App() {
           </div>
 
           <div className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.08] md:grid-cols-2">
-          {filteredProjects.map((project, index) => (
-  <div
-    key={project.title}
-    className="group bg-[#080808] p-7 transition hover:bg-[#0d0d0d]"
-  >
-    <div className="mb-10 flex items-center justify-between">
-      <span className="text-xs text-neutral-600">
-        {String(index + 1).padStart(2, "0")}
-      </span>
+            {filteredProjects.map((project, index) => (
+              <div
+                key={project.title}
+                className="group bg-[#080808] p-7 transition hover:bg-[#0d0d0d]"
+              >
+                <div className="mb-10 flex items-center justify-between">
+                  <span className="text-xs text-neutral-600">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
 
-      <span className="rounded-full border border-white/[0.08] px-2.5 py-1 text-[10px] text-neutral-500">
-        {project.status}
-      </span>
-    </div>
+                  <span className="rounded-full border border-white/[0.08] px-2.5 py-1 text-[10px] text-neutral-500">
+                    {project.status}
+                  </span>
+                </div>
 
-    <p className="mb-2 text-xs text-neutral-600">
-      {project.category}
-    </p>
+                <p className="mb-2 text-xs text-neutral-600">
+                  {project.category}
+                </p>
 
-    <h3 className="text-xl font-medium tracking-tight">
-      {project.title}
-    </h3>
+                <h3 className="text-xl font-medium tracking-tight">
+                  {project.title}
+                </h3>
 
-    <p className="mt-4 min-h-[72px] text-sm leading-6 text-neutral-500">
-      {project.description}
-    </p>
+                <p className="mt-4 min-h-[72px] text-sm leading-6 text-neutral-500">
+                  {project.description}
+                </p>
 
-    <div className="mt-7 flex flex-wrap gap-2">
-      {project.tags.map((tag) => (
-        <span
-          key={tag}
-          className="rounded-md bg-white/[0.04] px-2 py-1 text-[10px] text-neutral-500"
-        >
-          {tag}
-        </span>
-      ))}
-    </div>
+                <div className="mt-7 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-md bg-white/[0.04] px-2 py-1 text-[10px] text-neutral-500"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
 
-    <div className="mt-8">
-      {project.type === "download" ? (
-        <a
-          href={project.link}
-          download
-          className="inline-flex items-center gap-2 text-xs text-neutral-500 transition hover:text-white"
-        >
-          Download model
-          <span>↓</span>
-        </a>
-      ) : (
-        <a
-          href={project.link}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 text-xs text-neutral-500 transition hover:text-white"
-        >
-          View project
-          <span className="transition-transform group-hover:translate-x-1">
-            →
-          </span>
-        </a>
-      )}
-    </div>
-  </div>
-))}
+                <div className="mt-8">
+                  {project.type === "download" ? (
+                    <a
+                      href={project.link}
+                      download
+                      className="inline-flex items-center gap-2 text-xs text-neutral-500 transition hover:text-white"
+                    >
+                      Download model
+                      <span>↓</span>
+                    </a>
+                  ) : (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 text-xs text-neutral-500 transition hover:text-white"
+                    >
+                      View project
+                      <span className="transition-transform group-hover:translate-x-1">
+                        →
+                      </span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -440,6 +462,15 @@ function App() {
                 className="rounded-full border border-white/10 px-5 py-2.5 text-sm text-white transition hover:border-white/25"
               >
                 LinkedIn
+              </a>
+
+              <a
+                href="/Ernest%20Ngugi%20Resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-white/10 px-5 py-2.5 text-sm text-white transition hover:border-white/25"
+              >
+                View CV
               </a>
             </div>
           </div>
