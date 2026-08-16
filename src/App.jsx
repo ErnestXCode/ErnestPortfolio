@@ -178,8 +178,8 @@ function App() {
         <section className="border-y border-white/[0.08]">
           <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-white/[0.08] md:grid-cols-4">
             {[
-              ["8+", "Valuation models"],
-              ["3", "Financial systems"],
+              ["2", "Valuation models"],
+              ["1", "Financial systems"],
               ["3", "Live / prototype apps"],
               ["2026", "Finance & Banking"],
             ].map(([number, label]) => (
@@ -434,7 +434,7 @@ function App() {
               </a>
 
               <a
-                href="https://www.linkedin.com/"
+                href="https://www.linkedin.com/in/ernest-ngugi-35723a356/"
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-full border border-white/10 px-5 py-2.5 text-sm text-white transition hover:border-white/25"
