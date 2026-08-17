@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import {
   trackEvent,
   trackDownload,
@@ -18,6 +19,7 @@ const projects = [
     link: "/MSFT_DCF.xlsx",
     type: "download",
   },
+
   {
     category: "Valuation",
     title: "Copart — DCF Valuation",
@@ -28,16 +30,29 @@ const projects = [
     link: "/COPART_DCF.xlsx",
     type: "download",
   },
+
   {
     category: "Financial Systems",
     title: "K-Unity Loan Pipeline MIS",
     description:
-      "An Excel-based management information system with pipeline registers, RM scorecards, SLA aging analysis, dashboards, PivotTables and VBA automation. Shown with dummy data",
+      "An Excel-based management information system with pipeline registers, RM scorecards, SLA aging analysis, dashboards, PivotTables and VBA automation. Shown with dummy data.",
     tags: ["Excel", "VBA", "MIS"],
     status: "Built",
     link: "/K-Unity-MIS.xlsm",
     type: "download",
   },
+
+  {
+    category: "Financial Systems",
+    title: "School Management Platform",
+    description:
+      "A SaaS-style school management platform designed to centralize fee management, attendance, examinations, report cards, and parent-teacher communication through dedicated dashboards.",
+    tags: ["SaaS", "React", "MIS"],
+    status: "Built",
+    link: "https://nexa-two-swart.vercel.app/",
+    type: "website",
+  },
+
   {
     category: "Automation",
     title: "M-Pesa Statement Reconciliation",
@@ -48,6 +63,7 @@ const projects = [
     link: "https://nexa-mpesa-analyzer.vercel.app/",
     type: "website",
   },
+
   {
     category: "FinTech",
     title: "Swaff Holdings",
@@ -58,6 +74,7 @@ const projects = [
     link: "https://swaff-holdings.vercel.app/",
     type: "website",
   },
+
   {
     category: "FinTech",
     title: "K-Unity Member App",
@@ -256,9 +273,32 @@ function App() {
         <section className="border-y border-white/[0.08]">
           <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-white/[0.08] md:grid-cols-4">
             {[
-              ["2", "Valuation models"],
-              ["1", "Financial system"],
-              ["3", "Apps & web projects"],
+              [
+                String(
+                  projects.filter(
+                    (project) => project.category === "Valuation",
+                  ).length,
+                ),
+                "Valuation models",
+              ],
+              [
+                String(
+                  projects.filter(
+                    (project) => project.category === "Financial Systems",
+                  ).length,
+                ),
+                "Financial systems",
+              ],
+              [
+                String(
+                  projects.filter(
+                    (project) =>
+                      project.category === "Automation" ||
+                      project.category === "FinTech",
+                  ).length,
+                ),
+                "Apps & web projects",
+              ],
               ["2026", "Finance & Banking"],
             ].map(([number, label]) => (
               <div key={label} className="px-6 py-8">
@@ -266,9 +306,7 @@ function App() {
                   {number}
                 </div>
 
-                <div className="mt-1 text-xs text-neutral-500">
-                  {label}
-                </div>
+                <div className="mt-1 text-xs text-neutral-500">{label}</div>
               </div>
             ))}
           </div>
