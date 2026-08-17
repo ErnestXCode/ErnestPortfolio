@@ -1,4 +1,11 @@
 import { useState } from "react";
+import {
+  trackEvent,
+  trackDownload,
+  trackResume,
+  trackProject,
+  trackNavigation,
+} from "./analytics";
 
 const projects = [
   {
@@ -79,25 +86,69 @@ function App() {
       ? projects
       : projects.filter((project) => project.category === filter);
 
+  const handleFilterChange = (category) => {
+    setFilter(category);
+
+    trackEvent("filter_project", {
+      filter_category: category,
+    });
+  };
+
+  const handleProjectClick = (project) => {
+    if (project.type === "download") {
+      trackDownload({
+        fileName: project.link.split("/").pop(),
+        projectName: project.title,
+        projectCategory: project.category,
+      });
+    } else {
+      trackProject({
+        projectName: project.title,
+        projectCategory: project.category,
+        destination: project.link,
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#050505] text-white selection:bg-white selection:text-black">
       {/* NAVIGATION */}
       <nav className="fixed top-0 z-50 w-full border-b border-white/[0.08] bg-[#050505]/80 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-          <a href="#" className="text-sm font-medium tracking-tight">
+          <a
+            href="#"
+            onClick={() =>
+              trackEvent("nav_click", {
+                destination: "home",
+              })
+            }
+            className="text-sm font-medium tracking-tight"
+          >
             Ernest Ngugi
           </a>
 
           <div className="hidden items-center gap-8 text-sm text-neutral-400 md:flex">
-            <a href="#work" className="transition hover:text-white">
+            <a
+              href="#work"
+              onClick={() => trackNavigation("work")}
+              className="transition hover:text-white"
+            >
               Work
             </a>
 
-            <a href="#about" className="transition hover:text-white">
+            <a
+              href="#about"
+              onClick={() => trackNavigation("about")}
+              className="transition hover:text-white"
+            >
               About
             </a>
 
-            <a href="#contact" className="transition hover:text-white">
+            <a
+              href="#contact"
+              onClick={() => trackNavigation("contact")}
+              className="transition hover:text-white"
+            >
               Contact
             </a>
           </div>
@@ -107,12 +158,11 @@ function App() {
               href="/Ernest%20Ngugi%20Resume.pdf"
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackResume("navbar")}
               className="hidden rounded-full border border-white/10 px-4 py-2 text-xs text-neutral-300 transition hover:border-white/30 hover:text-white sm:block"
             >
               Resume
             </a>
-
-        
           </div>
         </div>
       </nav>
@@ -148,6 +198,11 @@ function App() {
                 <div className="mt-10 flex flex-wrap gap-3">
                   <a
                     href="#work"
+                    onClick={() =>
+                      trackEvent("cta_click", {
+                        cta: "view_my_work",
+                      })
+                    }
                     className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-neutral-200"
                   >
                     View my work
@@ -155,6 +210,11 @@ function App() {
 
                   <a
                     href="#about"
+                    onClick={() =>
+                      trackEvent("cta_click", {
+                        cta: "about_me",
+                      })
+                    }
                     className="rounded-full border border-white/10 px-6 py-3 text-sm font-medium text-white transition hover:border-white/25"
                   >
                     About me
@@ -164,6 +224,7 @@ function App() {
                     href="/Ernest%20Ngugi%20Resume.pdf"
                     target="_blank"
                     rel="noreferrer"
+                    onClick={() => trackResume("hero")}
                     className="rounded-full border border-white/10 px-6 py-3 text-sm font-medium text-neutral-300 transition hover:border-white/25 hover:text-white"
                   >
                     Resume
@@ -235,7 +296,7 @@ function App() {
               {categories.map((category) => (
                 <button
                   key={category}
-                  onClick={() => setFilter(category)}
+                  onClick={() => handleFilterChange(category)}
                   className={`rounded-full border px-3 py-1.5 text-xs transition ${
                     filter === category
                       ? "border-white bg-white text-black"
@@ -292,6 +353,7 @@ function App() {
                     <a
                       href={project.link}
                       download
+                      onClick={() => handleProjectClick(project)}
                       className="inline-flex items-center gap-2 text-xs text-neutral-500 transition hover:text-white"
                     >
                       Download model
@@ -302,6 +364,7 @@ function App() {
                       href={project.link}
                       target="_blank"
                       rel="noreferrer"
+                      onClick={() => handleProjectClick(project)}
                       className="inline-flex items-center gap-2 text-xs text-neutral-500 transition hover:text-white"
                     >
                       View project
@@ -397,9 +460,7 @@ function App() {
               },
             ].map((group) => (
               <div key={group.title}>
-                <h3 className="mb-5 text-sm font-medium">
-                  {group.title}
-                </h3>
+                <h3 className="mb-5 text-sm font-medium">{group.title}</h3>
 
                 <div className="space-y-3">
                   {group.items.map((item) => (
@@ -438,6 +499,11 @@ function App() {
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="mailto:enkaranu58@gmail.com"
+                onClick={() =>
+                  trackEvent("contact_click", {
+                    method: "email",
+                  })
+                }
                 className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:bg-neutral-200"
               >
                 Email me
@@ -445,6 +511,11 @@ function App() {
 
               <a
                 href="tel:+254795482452"
+                onClick={() =>
+                  trackEvent("contact_click", {
+                    method: "phone",
+                  })
+                }
                 className="rounded-full border border-white/10 px-5 py-2.5 text-sm text-white transition hover:border-white/25"
               >
                 +254 795 482 452
@@ -454,6 +525,11 @@ function App() {
                 href="https://www.linkedin.com/in/ernest-ngugi-35723a356/"
                 target="_blank"
                 rel="noreferrer"
+                onClick={() =>
+                  trackEvent("contact_click", {
+                    method: "linkedin",
+                  })
+                }
                 className="rounded-full border border-white/10 px-5 py-2.5 text-sm text-white transition hover:border-white/25"
               >
                 LinkedIn
@@ -463,6 +539,7 @@ function App() {
                 href="/Ernest%20Ngugi%20Resume.pdf"
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => trackResume("contact")}
                 className="rounded-full border border-white/10 px-5 py-2.5 text-sm text-white transition hover:border-white/25"
               >
                 View CV
