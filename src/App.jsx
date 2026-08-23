@@ -10,6 +10,16 @@ import {
 
 const projects = [
   {
+  category: "Valuation",
+  title: "PayPal — DCF Valuation",
+  description:
+    "A revenue-driven DCF isolating the mechanical link between rising average transaction value and declining take rate, grounded in PayPal's acquisition history and current strategic position.",
+  tags: ["DCF", "Financial Modeling", "Valuation"],
+  status: "Research",
+  link: "/PYPL_DCF.xlsm",
+  type: "download",
+},
+  {
     category: "Valuation",
     title: "Microsoft — DCF Valuation",
     description:
